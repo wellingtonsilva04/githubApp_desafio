@@ -7,4 +7,4 @@ export default function ReposFavoritos() {
             <Text>Meus favoritos</Text>
         </View>
     );
-} 
+}
