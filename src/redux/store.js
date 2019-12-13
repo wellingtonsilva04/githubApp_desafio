@@ -1,0 +1,17 @@
+import {createStore, applyMiddleware, compose} from 'redux';
+import thunk from 'redux-thunk';
+import reducers from './reducers';
+import client from '../services/apollo';
+
+// Todos os middlewares vão juntos
+const middleWare = [];
+// Adicionando o Redux Thunk
+middleWare.push(thunk);
+//middleWare.push(client.middleWare());
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducers,
+  composeEnhancer(applyMiddleware(...middleWare)),
+);
+
+export default store;
