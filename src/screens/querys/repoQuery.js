@@ -2,7 +2,11 @@ import gql from 'graphql-tag';
 export const reposQuery = gql`
   query {
     viewer {
-      repositories(affiliations: COLLABORATOR, first: 30) {
+      repositories(
+        orderBy: {field: NAME, direction: ASC},
+        affiliations: COLLABORATOR,
+        first: 50
+      ) {
         edges {
           node {
             id
@@ -10,9 +14,8 @@ export const reposQuery = gql`
             forkCount
             collaborators {
               nodes {
-                name
                 login
-                url
+                avatarUrl(size: 100)
               }
             }
             name
@@ -22,6 +25,10 @@ export const reposQuery = gql`
             stargazers {
               totalCount
             }
+            issues(filterBy: {states: OPEN}) {
+              totalCount
+            }
+            url
           }
         }
       }

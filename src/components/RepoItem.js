@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
+import StarComponent from './StarComponent';
+import ForkComponent from './ForkComponent';
 
 // import { Container } from './styles';
 
@@ -9,33 +11,50 @@ export default class Repoitem extends Component {
     super(props);
     this.state = {};
   }
+  /*Função renderiza a propriedade primaryLanguage de um repositório. Retorna null
+  caso a mesma seja null
+  */
   renderPrimarylanguage = primaryLanguage => {
     if (primaryLanguage != null) {
-      return <Text>{primaryLanguage.name}</Text>;
+      return <Text style={styles.marginRight}>{primaryLanguage.name}</Text>;
     }
     return null;
-  }
+  };
+
+  /*Função renderiza a propriedade description de um repositório. Retorna null
+  caso o mesmo seja null
+  */
+  renderDescription = description => {
+    if (description != null) {
+      return <Text numberOfLines={1}>{description}</Text>;
+    }
+    return null;
+  };
+
   render() {
-    const {
-      name,
-      description,
-      stargazers,
-      primaryLanguage,
-      forkCount,
-    } = this.props;
+    const {name, stargazers} = this.props;
     return (
-      <View style={{flex: 1, padding: 5}}>
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>{name}</Text>
-        <Text numberOfLines={1}>{description}</Text>
-        <View style={{flexDirection: 'row'}}>
-          <Icon name="star" type="antdesign" size={16} color="#5e6163" />
-          <Text>{stargazers}</Text>
-          <Text>Star today</Text>
-          {this.renderPrimarylanguage(primaryLanguage)}
-          <Icon name="fork" type="antdesign" size={16} color="#5e6163" />
-          <Text>{forkCount}</Text>
-        </View>
+      <View style={styles.container}>
+        <Text style={styles.fontSizeText} numberOfLines={1}>
+          {name}
+        </Text>
+        <StarComponent starCount={stargazers} />
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 5,
+    paddingRight: 10,
+    marginVertical: 10,
+    backgroundColor: 'gray',
+  },
+  fontSizeText: {
+    fontSize: 16,
+  },
+  marginRight: {
+    marginRight: 20,
+  },
+});
