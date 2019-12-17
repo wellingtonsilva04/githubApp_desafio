@@ -22,7 +22,7 @@ export default class RepoDetails extends Component {
   */
   renderPrimarylanguage = primaryLanguage => {
     if (primaryLanguage != null) {
-      return <Text style={{marginRight: 20}}>Linguage Primary: {primaryLanguage.name}</Text>;
+      return <Text style={{marginRight: 22}}>Linguage Primary: {primaryLanguage.name}</Text>;
     }
     return null;
   };
@@ -64,7 +64,7 @@ export default class RepoDetails extends Component {
             <ForkComponent forkCount={forkCount} />
           </View>
         </View>
-        <Text>Collaborators</Text>
+        <Text style={{fontSize: 18, color: '#22252a'}}>Collaborators</Text>
         <ListCollaborators collaborators={collaborators} />
       </ScrollView>
     );
