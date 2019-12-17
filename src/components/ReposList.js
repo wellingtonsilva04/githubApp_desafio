@@ -11,7 +11,7 @@ class ReposList extends Component {
     this.props.dispatch(setFavorito(id));
   };
   render() {
-    const {repos} = this.props;
+    const {repos, navigateToDetails} = this.props;
     return (
       <View>
         <FlatList
@@ -20,7 +20,7 @@ class ReposList extends Component {
           renderItem={({item}) => {
             return (
               <View style={styles.containerItem}>
-                <TouchableOpacity style={{flex: 7}} onPress={() => this.navigateToDetails(repos[item])}>
+                <TouchableOpacity style={{flex: 7}} onPress={() => navigateToDetails(repos[item])}>
                   <RepoItem
                     name={repos[item].name}
                     stargazers={repos[item].stargazers.totalCount}

@@ -29,7 +29,7 @@ class Trending extends Component {
     }
     return (
       <View style={styles.container}>
-        <ReposList repos={repos} />
+        <ReposList repos={repos} navigateToDetails={this.navigateToDetails} />
       </View>
     );
   }
