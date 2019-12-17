@@ -13,9 +13,19 @@ class ReposFavoritos extends Component {
     });
     return data;
   };
+
+  navigateToDetails = repo => {
+    console.log('reo', repo);
+    this.props.navigation.navigate('RepoDetails', {repo: repo});
+  };
   render() {
     const {repos} = this.props;
-    return <ReposList repos={this.renderFav(repos)} />;
+    return (
+      <ReposList
+        repos={this.renderFav(repos)}
+        navigateToDetails={this.navigateToDetails}
+      />
+    );
   }
 }
 const mapStateToProps = state => {
