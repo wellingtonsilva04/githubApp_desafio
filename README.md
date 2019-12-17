@@ -1,6 +1,6 @@
 # githubApp Desafio
 ### **Instruções para uso**
-Instalação das dependcias do projeto.
+Instalação das dependências do projeto.
 Na diretório raiz do projeto execute:
 ```yarn start```
 
