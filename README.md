@@ -10,7 +10,7 @@ Em seguida execute:
 ### **Token do github**
 Para executar o projecto requer uma token de acesso pessoal do gitHub para acessar a api versão 4 com graphQl.
 Instruções de como obte-la você encontra [aqui](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql).
-```/src/config/token.js
+```//No arquivo /src/config/token.js
 //coloque sua token aqui
-const token = 'usa token';
+const token = 'sua token';
 ```
