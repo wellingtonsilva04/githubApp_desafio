@@ -3,6 +3,7 @@ import {reposQuery} from '../../screens/querys/repoQuery';
 import cliente from '../../services/apollo';
 export const SET_REPOS = 'SET_REPOS';
 export const SET_IS_FETCHING = 'SET_IS_FETCHING';
+export const SET_FAVORITO = 'SET_FAVORITO';
 //export const SET_FAVORITO = 'SET_FAVORITO';
 
 export const setRepos = repos => ({
@@ -15,14 +16,29 @@ export const setIsFetching = isFetching => ({
   payload: isFetching,
 });
 
-export function setFavorito(id) {
-  return function(dispatch, getState) {
-    const state = getState();
-    const {repos} = state.reposReducer;
-    repos[id].isFvorito = !repos[id].isFvorito;
-    dispatch(setRepos(repos));
-  };
+export const setFavorito = id => ({
+  type: SET_FAVORITO,
+  payload: id,
+});
+
+export function toObject(repos) {
+  const reposObject = {};
+  repos.forEach(
+    repo =>
+      (reposObject[repo.node.id] = {
+        name: repo.node.name,
+        collaborators: repo.node.collaborators.nodes,
+        issues: repo.node.issues.totalCount,
+        forkCount: repo.node.forkCount,
+        primaryLanguage: repo.node.primaryLanguage,
+        stargazers: repo.node.stargazers,
+        url: repo.node.url,
+        isFavorito: false,
+      }),
+  );
+  return reposObject;
 }
+
 export function getRepos() {
   return function fetching(dispatch, getState) {
     dispatch(setIsFetching(true));
@@ -30,7 +46,7 @@ export function getRepos() {
       .query({query: reposQuery})
       .then(response => {
         const repos = response.data.viewer.repositories.edges;
-        dispatch(setRepos(repos.map(repo => ({...repo, isFvorito: false}))));
+        dispatch(setRepos(toObject(repos)));
         dispatch(setIsFetching(false));
       })
       .catch(error => {

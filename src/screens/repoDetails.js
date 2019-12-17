@@ -46,7 +46,7 @@ export default class RepoDetails extends Component {
       primaryLanguage,
       forkCount,
       collaborators,
-    } = repo.node;
+    } = repo;
     return (
       <ScrollView style={{flex: 1, padding: 5}}>
         <Text style={{fontSize: 20, fontWeight: 'bold', color: '#22252a'}}>

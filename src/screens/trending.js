@@ -6,6 +6,7 @@ import {Divider} from 'react-native-elements';
 import reposReducer from '../redux/repositorios/reducer';
 import {connect} from 'react-redux';
 import {getRepos, setFavorito} from '../redux/repositorios/action';
+import FavoritoComponent from '../components/FavoritoComponent';
 
 // import { Container } from './styles';
 
@@ -26,41 +27,38 @@ class Trending extends Component {
   };
   render() {
     const {repos, isFetching} = this.props;
-    //console.log(repos);
+    //console.log('trending', repos);
     if (isFetching) {
       return <ActivityIndicator />;
     }
     return (
       <View style={styles.container}>
         <FlatList
-          data={repos}
+          data={Object.keys(repos)}
           ItemSeparatorComponent={() => <Divider />}
-          renderItem={({item, index}) => {
+          renderItem={({item}) => {
+            console.log(item);
             return (
               <View style={styles.containerItem}>
-                <TouchableOpacity style={{flex: 6}} onPress={() => this.navigateToDetails(item)}>
+                <TouchableOpacity style={{flex: 7}} onPress={() => this.navigateToDetails(repos[item])}>
                   <RepoItem
-                    name={item.node.name}
-                    stargazers={item.node.stargazers.totalCount}
+                    name={repos[item].name}
+                    stargazers={repos[item].stargazers.totalCount}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handlerFavoritar(index)}>
-                  <View
-                    style={{
-                      flex: 4,
-                      paddingRight: 10,
-                      marginVertical: 10,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: item.node.isFavorito ? 'green': 'red',
-                    }}>
-                    <Text>{toString(item.node.isFavorito)}</Text>
-                  </View>
-                </TouchableOpacity>
+                <View style={{flex: 3}}>
+                  <FavoritoComponent
+                    isOn={repos[item].isFavorito}
+                    onColor="#264954"
+                    offColor="#c9cfd1"
+                    size="small"
+                    onToggle={() => this.handlerFavoritar(item)}
+                  />
+                </View>
               </View>
             );
           }}
-          keyExtractor={item => item.node.id}
+          keyExtractor={item => item}
         />
       </View>
     );

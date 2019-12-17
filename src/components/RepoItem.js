@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingRight: 10,
     marginVertical: 10,
-    backgroundColor: 'gray',
   },
   fontSizeText: {
     fontSize: 16,

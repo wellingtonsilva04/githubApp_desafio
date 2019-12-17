@@ -12,7 +12,7 @@ export default class ListCollaborators extends Component {
     return (
       <View>
         <FlatList
-          data={collaborators.nodes}
+          data={collaborators}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({item}) => {
             return (

@@ -1,7 +1,7 @@
-import {SET_REPOS, SET_IS_FETCHING} from './action';
+import {SET_REPOS, SET_IS_FETCHING, SET_FAVORITO} from './action';
 
 const initialState = {
-  repos: [],
+  repos: {},
   isFetching: false,
 };
 
@@ -11,6 +11,17 @@ export default (state = initialState, action) => {
       return {...state, repos: action.payload};
     case SET_IS_FETCHING:
       return {...state, isFetching: action.payload};
+    case SET_FAVORITO:
+      return {
+        ...state,
+        repos: {
+          ...state.repos,
+          [action.payload]: {
+            ...state.repos[action.payload],
+            isFavorito: !state.repos[action.payload].isFavorito,
+          },
+        },
+      };
     default:
       return state;
   }
