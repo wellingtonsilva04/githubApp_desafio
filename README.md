@@ -1,4 +1,4 @@
-# githuapp Desafio
+# githubApp Desafio
 ### **Instruções para uso**
 Instalação das dependcias do projeto.
 Na diretório raiz do projeto execute:
