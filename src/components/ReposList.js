@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, FlatList, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import RepoItem from './RepoItem';
 import FavoritoComponent from './FavoritoComponent';
 import {Divider} from 'react-native-elements';
@@ -10,6 +10,10 @@ class ReposList extends Component {
   handlerFavoritar = id => {
     this.props.dispatch(setFavorito(id));
   };
+  renderNotFavoritos = () => {
+    return <Text style={styles.mensagemText}>Ops! Não há Favoritos...</Text>;
+  };
+
   render() {
     const {repos, navigateToDetails} = this.props;
     return (
@@ -17,6 +21,7 @@ class ReposList extends Component {
         <FlatList
           data={Object.keys(repos)}
           ItemSeparatorComponent={() => <Divider />}
+          ListEmptyComponent={() => this.renderNotFavoritos()}
           renderItem={({item}) => {
             return (
               <View style={styles.containerItem}>
@@ -49,6 +54,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  mensagemText:{
+    color: '#264954',
+    fontSize: 22,
+    textAlign: 'center',
+    marginVertical: 20,
   },
 });
 
