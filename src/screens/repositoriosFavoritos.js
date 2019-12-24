@@ -15,7 +15,6 @@ class ReposFavoritos extends Component {
   };
 
   navigateToDetails = repo => {
-    console.log('reo', repo);
     this.props.navigation.navigate('RepoDetails', {repo: repo});
   };
   render() {

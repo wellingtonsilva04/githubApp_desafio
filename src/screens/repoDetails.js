@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import StarComponent from '../components/StarComponent';
 import ForkComponent from '../components/ForkComponent';
 import ListCollaborators from '../components/ListaCollaborators.';
@@ -37,6 +36,10 @@ export default class RepoDetails extends Component {
     return null;
   };
 
+  navigateToUrlRepo = ({url, name}) => {
+    this.props.navigation.navigate('UrlRepo', {url: url, name: name});
+  };
+
   render() {
     const repo = this.props.navigation.getParam('repo');
     const {
@@ -46,6 +49,7 @@ export default class RepoDetails extends Component {
       primaryLanguage,
       forkCount,
       collaborators,
+      url,
     } = repo;
     return (
       <ScrollView style={{flex: 1, padding: 5}}>
@@ -64,6 +68,9 @@ export default class RepoDetails extends Component {
             <ForkComponent forkCount={forkCount} />
           </View>
         </View>
+        <TouchableOpacity style ={{paddingVertical: 10}} onPress={() => this.navigateToUrlRepo({url, name})}>
+          <Text>acessar: {url}</Text>
+        </TouchableOpacity>
         <Text style={{fontSize: 18, color: '#22252a'}}>Collaborators</Text>
         <ListCollaborators collaborators={collaborators} />
       </ScrollView>

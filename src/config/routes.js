@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Trending from '../screens/trending';
 import repositoriosFavoritos from '../screens/repositoriosFavoritos';
 import RepoDetails from '../screens/repoDetails';
+import UrlRepo from '../screens/UrlRepo';
 
 export const AppTabs = createMaterialTopTabNavigator(
   {
@@ -40,6 +41,12 @@ export const AppNavigator = createStackNavigator(
           headerTitle: 'Destalhes do Repositório',
         };
       },
+    },
+    UrlRepo: {
+      screen: UrlRepo,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: navigation.getParam('name'),
+      }),
     },
   },
   {

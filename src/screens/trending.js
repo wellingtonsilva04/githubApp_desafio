@@ -17,7 +17,6 @@ class Trending extends Component {
     this.props.dispatch(getRepos());
   }
   navigateToDetails = repo => {
-    console.log('reo', repo);
     this.props.navigation.navigate('RepoDetails', {repo: repo});
   };
 
