@@ -12,5 +12,5 @@ Para executar o projecto requer uma token de acesso pessoal do gitHub para acess
 Instruções de como obte-la você encontra [aqui](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql).
 No arquivo /src/config/token.js coloque sua token.
 ```//coloque sua token aqui
-const token = 'sua token';
+export const token = 'sua token';
 ```

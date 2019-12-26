@@ -22,6 +22,7 @@ class ReposFavoritos extends Component {
       <ReposList
         repos={this.renderFav(repos)}
         navigateToDetails={this.navigateToDetails}
+        mensageEmptyList="Ops! Não há Favoritos..."
       />
     );
   }

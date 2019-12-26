@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import ActivityIndicator from '../components/ActivityIndicator';
-import reposReducer from '../redux/repositorios/reducer';
 import {connect} from 'react-redux';
 import {getRepos} from '../redux/repositorios/action';
 import ReposList from '../components/ReposList';
@@ -28,7 +27,11 @@ class Trending extends Component {
     }
     return (
       <View style={styles.container}>
-        <ReposList repos={repos} navigateToDetails={this.navigateToDetails} />
+        <ReposList
+          repos={repos}
+          mensageEmptyList="Não há Repositários"
+          navigateToDetails={this.navigateToDetails}
+        />
       </View>
     );
   }

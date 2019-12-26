@@ -10,18 +10,18 @@ class ReposList extends Component {
   handlerFavoritar = id => {
     this.props.dispatch(setFavorito(id));
   };
-  renderNotFavoritos = () => {
-    return <Text style={styles.mensagemText}>Ops! Não há Favoritos...</Text>;
+  renderNotFavoritos = mensageEmptyList => {
+    return <Text style={styles.mensagemText}>{mensageEmptyList}</Text>;
   };
 
   render() {
-    const {repos, navigateToDetails} = this.props;
+    const {repos, mensageEmptyList, navigateToDetails} = this.props;
     return (
       <View>
         <FlatList
           data={Object.keys(repos)}
           ItemSeparatorComponent={() => <Divider />}
-          ListEmptyComponent={() => this.renderNotFavoritos()}
+          ListEmptyComponent={() => this.renderNotFavoritos(mensageEmptyList)}
           renderItem={({item}) => {
             return (
               <View style={styles.containerItem}>
