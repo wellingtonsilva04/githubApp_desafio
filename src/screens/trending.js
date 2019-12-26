@@ -29,7 +29,7 @@ class Trending extends Component {
       <View style={styles.container}>
         <ReposList
           repos={repos}
-          mensageEmptyList="Não há Repositários"
+          mensageEmptyList="Não há Repositórios"
           navigateToDetails={this.navigateToDetails}
         />
       </View>

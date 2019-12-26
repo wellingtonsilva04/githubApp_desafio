@@ -6,7 +6,6 @@ import {ListItem} from 'react-native-elements';
 export default class Collaborator extends Component {
   render() {
     const {login, avatarUrl} = this.props;
-    console.log('ava', avatarUrl);
     return (
       <ListItem
         leftAvatar={{
