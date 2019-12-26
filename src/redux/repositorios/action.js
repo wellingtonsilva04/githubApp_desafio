@@ -1,4 +1,3 @@
-import React from 'react';
 import {reposQuery} from '../../querys/repoQuery';
 import cliente from '../../services/apollo';
 export const SET_REPOS = 'SET_REPOS';
@@ -50,7 +49,6 @@ export function getRepos() {
         dispatch(setIsFetching(false));
       })
       .catch(error => {
-        console.log(error);
         dispatch(setIsFetching(false));
       });
   };

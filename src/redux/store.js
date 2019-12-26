@@ -1,7 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-import client from '../services/apollo';
 
 // Todos os middlewares vão juntos
 const middleWare = [];

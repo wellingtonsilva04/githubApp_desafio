@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
-// import { Container } from './styles';
 
 export default class FavoritoComponent extends Component {
   render() {
     const {isOn, onColor, offColor, size, onToggle} = this.props;
     return (
-      <View style={{alignItems: 'center'}}>
+      <View style={styles.container}>
         <Text>{isOn ? 'Favorito' : 'Favoritar'}</Text>
         <ToggleSwitch
           isOn={isOn}
@@ -21,3 +19,8 @@ export default class FavoritoComponent extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+});

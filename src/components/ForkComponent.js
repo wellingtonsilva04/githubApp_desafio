@@ -1,21 +1,33 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 
 export default class ForkComponent extends Component {
   render() {
     const {forkCount} = this.props;
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View style={styles.container}>
         <Icon
-          style={{paddingHorizontal: 5}}
+          style={styles.iconFork}
           name="fork"
           type="antdesign"
           size={16}
           color="#5e6163"
         />
-        <Text style={{paddingHorizontal: 5}}>{forkCount}</Text>
+        <Text style={styles.textFork}>{forkCount}</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  },
+  iconFork: {
+    paddingHorizontal: 5,
+  },
+  textFork: {
+    paddingHorizontal: 5,
+  },
+});

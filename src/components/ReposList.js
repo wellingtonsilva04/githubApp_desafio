@@ -25,13 +25,15 @@ class ReposList extends Component {
           renderItem={({item}) => {
             return (
               <View style={styles.containerItem}>
-                <TouchableOpacity style={{flex: 7}} onPress={() => navigateToDetails(repos[item])}>
+                <TouchableOpacity
+                  style={styles.repoItemTouchable}
+                  onPress={() => navigateToDetails(repos[item])}>
                   <RepoItem
                     name={repos[item].name}
                     stargazers={repos[item].stargazers.totalCount}
                   />
                 </TouchableOpacity>
-                <View style={{flex: 3}}>
+                <View style={styles.containerFavorito}>
                   <FavoritoComponent
                     isOn={repos[item].isFavorito}
                     onColor="#264954"
@@ -55,11 +57,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  mensagemText:{
+  mensagemText: {
     color: '#264954',
     fontSize: 22,
     textAlign: 'center',
     marginVertical: 20,
+  },
+  repoItemTouchable: {
+    flex: 7,
+  },
+  containerFavorito: {
+    flex: 3,
   },
 });
 

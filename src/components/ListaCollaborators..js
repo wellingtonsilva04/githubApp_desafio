@@ -8,7 +8,6 @@ import Collaborator from './Collaborator';
 export default class ListCollaborators extends Component {
   render() {
     const {collaborators} = this.props;
-    console.log('list', collaborators);
     return (
       <View>
         <FlatList

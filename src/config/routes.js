@@ -38,7 +38,7 @@ export const AppNavigator = createStackNavigator(
       screen: RepoDetails,
       navigationOptions: ({navigation}) => {
         return {
-          headerTitle: 'Destalhes do Repositório',
+          headerTitle: 'Detalhes do Repositório',
         };
       },
     },
