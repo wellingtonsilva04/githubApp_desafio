@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 import StarComponent from '../components/StarComponent';
 import ForkComponent from '../components/ForkComponent';
 import ListCollaborators from '../components/ListaCollaborators.';
@@ -21,7 +27,11 @@ export default class RepoDetails extends Component {
   */
   renderPrimarylanguage = primaryLanguage => {
     if (primaryLanguage != null) {
-      return <Text style={{marginRight: 22}}>Linguage Primary: {primaryLanguage.name}</Text>;
+      return (
+        <Text style={styles.textLinguagePrimary}>
+          Linguage Primary: {primaryLanguage.name}
+        </Text>
+      );
     }
     return null;
   };
@@ -52,28 +62,67 @@ export default class RepoDetails extends Component {
       url,
     } = repo;
     return (
-      <ScrollView style={{flex: 1, padding: 5}}>
-        <Text style={{fontSize: 20, fontWeight: 'bold', color: '#22252a'}}>
-          {name}
-        </Text>
+      <ScrollView style={styles.containerScrollView}>
+        <Text style={styles.textName}>{name}</Text>
         {this.renderDescription(description)}
         {this.renderPrimarylanguage(primaryLanguage)}
-        <View style={{flexDirection: 'row'}}>
-          <View style={{flexDirection: 'row', marginRight: 20,}}>
-            <Text style={{marginRight: 10}}>Stars</Text>
+        <View style={styles.containerStarsForks}>
+          <View style={styles.containerStars}>
+            <Text style={styles.textStarts}>Stars</Text>
             <StarComponent starCount={stargazers.totalCount} />
           </View>
-          <View style={{flexDirection: 'row', paddingBottom: 10}}>
-            <Text style={{marginRight: 10}}>Forks</Text>
+          <View style={styles.containerForks}>
+            <Text style={styles.textForks}>Forks</Text>
             <ForkComponent forkCount={forkCount} />
           </View>
         </View>
-        <TouchableOpacity style ={{paddingVertical: 10}} onPress={() => this.navigateToUrlRepo({url, name})}>
+        <TouchableOpacity
+          style={styles.urlRepo}
+          onPress={() => this.navigateToUrlRepo({url, name})}>
           <Text>acessar: {url}</Text>
         </TouchableOpacity>
-        <Text style={{fontSize: 18, color: '#22252a'}}>Collaborators</Text>
+        <Text style={styles.textCollaborators}>Collaborators</Text>
         <ListCollaborators collaborators={collaborators} />
       </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  textLinguagePrimary: {
+    marginRight: 22,
+  },
+  containerScrollView: {
+    flex: 1,
+    padding: 5,
+  },
+  textName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#22252a',
+  },
+  containerStarsForks: {
+    flexDirection: 'row',
+  },
+  containerStars: {
+    flexDirection: 'row',
+    marginRight: 20,
+  },
+  textStarts: {
+    marginRight: 10,
+  },
+  containerForks: {
+    flexDirection: 'row',
+    paddingBottom: 10,
+  },
+  textForks: {
+    marginRight: 10,
+  },
+  urlRepo: {
+    paddingVertical: 10,
+  },
+  textCollaborators: {
+    fontSize: 18,
+    color: '#22252a',
+  },
+});
