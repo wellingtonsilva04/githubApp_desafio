@@ -12,5 +12,5 @@ Para executar o projecto requer uma token de acesso pessoal do gitHub para acess
 Instruções de como obte-la você encontra [aqui](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line#creating-a-token).
 Crie um arquivo .env coloque sua token.
 ```
-API_KEY='sua token'
+API_TOKEN='sua token'
 ```
