@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, FlatList, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import RepoItem from './RepoItem';
 import FavoritoComponent from './FavoritoComponent';
@@ -6,51 +6,48 @@ import {Divider} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {setFavorito} from '../redux/repositorios/action';
 
-class ReposList extends Component {
-  handlerFavoritar = id => {
-    this.props.dispatch(setFavorito(id));
+const ReposList = props => {
+  const handlerFavoritar = id => {
+    props.dispatch(setFavorito(id));
   };
-  renderNotFavoritos = mensageEmptyList => {
+  const renderNotFavoritos = mensageEmptyList => {
     return <Text style={styles.mensagemText}>{mensageEmptyList}</Text>;
   };
 
-  render() {
-    const {repos, mensageEmptyList, navigateToDetails} = this.props;
-    return (
-      <View>
-        <FlatList
-          data={Object.keys(repos)}
-          ItemSeparatorComponent={() => <Divider />}
-          ListEmptyComponent={() => this.renderNotFavoritos(mensageEmptyList)}
-          renderItem={({item}) => {
-            return (
-              <View style={styles.containerItem}>
-                <TouchableOpacity
-                  style={styles.repoItemTouchable}
-                  onPress={() => navigateToDetails(repos[item])}>
-                  <RepoItem
-                    name={repos[item].name}
-                    stargazers={repos[item].stargazers.totalCount}
-                  />
-                </TouchableOpacity>
-                <View style={styles.containerFavorito}>
-                  <FavoritoComponent
-                    isOn={repos[item].isFavorito}
-                    onColor="#264954"
-                    offColor="#c9cfd1"
-                    size="small"
-                    onToggle={() => this.handlerFavoritar(item)}
-                  />
-                </View>
-              </View>
-            );
-          }}
-          keyExtractor={item => item}
-        />
-      </View>
-    );
-  }
-}
+  const {repos, mensageEmptyList, navigateToDetails} = props;
+  return (
+    <FlatList
+      data={Object.keys(repos)}
+      ItemSeparatorComponent={() => <Divider />}
+      ListEmptyComponent={() => renderNotFavoritos(mensageEmptyList)}
+      renderItem={({item}) => {
+        return (
+          <View style={styles.containerItem}>
+            <TouchableOpacity
+              style={styles.repoItemTouchable}
+              onPress={() => navigateToDetails(repos[item])}>
+              <RepoItem
+                name={repos[item].name}
+                stargazers={repos[item].stargazers.totalCount}
+              />
+            </TouchableOpacity>
+            <View style={styles.containerFavorito}>
+              <FavoritoComponent
+                isOn={repos[item].isFavorito}
+                onColor="#264954"
+                offColor="#c9cfd1"
+                size="small"
+                onToggle={() => handlerFavoritar(item)}
+              />
+            </View>
+          </View>
+        );
+      }}
+      keyExtractor={item => item}
+    />
+  );
+};
+
 const styles = StyleSheet.create({
   containerItem: {
     flex: 1,

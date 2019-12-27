@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import ReposList from '../components/ReposList';
 
-class ReposFavoritos extends Component {
-  renderFav = repos => {
+const ReposFavoritos = props => {
+  const renderFav = repos => {
     const data = {};
     Object.keys(repos).forEach(key => {
       if (repos[key].isFavorito) {
@@ -13,20 +13,19 @@ class ReposFavoritos extends Component {
     return data;
   };
 
-  navigateToDetails = repo => {
-    this.props.navigation.navigate('RepoDetails', {repo: repo});
+  const navigateToDetails = repo => {
+    props.navigation.navigate('RepoDetails', {repo: repo});
   };
-  render() {
-    const {repos} = this.props;
-    return (
-      <ReposList
-        repos={this.renderFav(repos)}
-        navigateToDetails={this.navigateToDetails}
-        mensageEmptyList="Ops! Não há Favoritos..."
-      />
-    );
-  }
-}
+  const {repos} = props;
+  return (
+    <ReposList
+      repos={renderFav(repos)}
+      navigateToDetails={navigateToDetails}
+      mensageEmptyList="Ops! Não há Favoritos..."
+    />
+  );
+};
+
 const mapStateToProps = state => {
   const {repos} = state.reposReducer;
 

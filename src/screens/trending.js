@@ -1,40 +1,33 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import ActivityIndicator from '../components/ActivityIndicator';
 import {connect} from 'react-redux';
 import {getRepos} from '../redux/repositorios/action';
 import ReposList from '../components/ReposList';
 
-// import { Container } from './styles';
+const Trending = props => {
+  useEffect(() => {
+    props.dispatch(getRepos());
+  }, []);
 
-class Trending extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  componentWillMount() {
-    this.props.dispatch(getRepos());
-  }
-  navigateToDetails = repo => {
-    this.props.navigation.navigate('RepoDetails', {repo: repo});
+  const navigateToDetails = repo => {
+    props.navigation.navigate('RepoDetails', {repo: repo});
   };
 
-  render() {
-    const {repos, isFetching} = this.props;
-    if (isFetching) {
-      return <ActivityIndicator />;
-    }
-    return (
-      <View style={styles.container}>
-        <ReposList
-          repos={repos}
-          mensageEmptyList="Não há Repositórios"
-          navigateToDetails={this.navigateToDetails}
-        />
-      </View>
-    );
+  const {repos, isFetching} = props;
+  if (isFetching) {
+    return <ActivityIndicator />;
   }
-}
+  return (
+    <View style={styles.container}>
+      <ReposList
+        repos={repos}
+        mensageEmptyList="Não há Repositórios"
+        navigateToDetails={navigateToDetails}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
