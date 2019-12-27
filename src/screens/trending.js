@@ -21,7 +21,6 @@ class Trending extends Component {
 
   render() {
     const {repos, isFetching} = this.props;
-    //console.log('trending', repos);
     if (isFetching) {
       return <ActivityIndicator />;
     }
