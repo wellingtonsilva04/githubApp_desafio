@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
 
+//Componente que renderiza o favorito. Exibie um toggle e um text
 export default function FavoritoComponent(props) {
   const {isOn, onColor, offColor, size, onToggle} = props;
   return (

@@ -6,6 +6,7 @@ import {Divider} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {setFavorito} from '../redux/repositorios/action';
 
+//Componete recebe uma lista de repositórios e a renderiza
 const ReposList = props => {
   const handlerFavoritar = id => {
     props.dispatch(setFavorito(id));

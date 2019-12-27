@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
-// import { Container } from './styles';
+// retorna um componente de loading. ;
 
 export default function ActiviIndicator() {
   return (

@@ -20,6 +20,9 @@ export const setFavorito = id => ({
   payload: id,
 });
 
+/*Função que recebe um array de objetos e retorno um objeto contendo
+os objetos do array.
+*/
 export function toObject(repos) {
   const reposObject = {};
   repos.forEach(
@@ -38,6 +41,8 @@ export function toObject(repos) {
   return reposObject;
 }
 
+/*Função que faz uma chamada de api e com a resposta faz a chamada do
+action setRepos para salvar no state da aplicação*/
 export function getRepos() {
   return function fetching(dispatch, getState) {
     dispatch(setIsFetching(true));

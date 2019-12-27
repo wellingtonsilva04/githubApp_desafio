@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import StarComponent from './StarComponent';
 
+//Componente recebe duas propriedades de um repositório (name, stargazers) e as renderiza
 const RepoItem = props => {
   const {name, stargazers} = props;
   return (

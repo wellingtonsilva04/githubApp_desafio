@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 
+//componete que renderiza a quantidade de forks junto com um icon
 const ForkComponent = props => {
   const {forkCount} = props;
   return (

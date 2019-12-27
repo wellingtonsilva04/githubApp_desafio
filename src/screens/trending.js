@@ -5,15 +5,18 @@ import {connect} from 'react-redux';
 import {getRepos} from '../redux/repositorios/action';
 import ReposList from '../components/ReposList';
 
+//Carega os repositórios
 const Trending = props => {
   useEffect(() => {
     props.dispatch(getRepos());
   }, []);
 
+  //navega para a tela de detalhes do repositório
   const navigateToDetails = repo => {
     props.navigation.navigate('RepoDetails', {repo: repo});
   };
 
+  //return o loading de carregamento
   const {repos, isFetching} = props;
   if (isFetching) {
     return <ActivityIndicator />;

@@ -10,10 +10,8 @@ import StarComponent from '../components/StarComponent';
 import ForkComponent from '../components/ForkComponent';
 import ListCollaborators from '../components/ListaCollaborators.';
 
-/*Ao clicar em um repositório da lista, deve exibir os detalhes
-do repositório individual: (Nome, quantidade de stars, quantidade de issues abertas,
+/*Exibir os detalhes do repositório individual: (Nome, quantidade de stars, quantidade de issues abertas,
 quantidade de forks, Lista de colaboradores, Url do repositório e descrição do repositório)
-
 */
 const RepoDetails = props => {
   /*Função renderiza a propriedade primaryLanguage de um repositório. Retorna null
@@ -40,6 +38,7 @@ const RepoDetails = props => {
     return null;
   };
 
+  //navega para a screen UrlRepo
   const navigateToUrlRepo = ({url, name}) => {
     props.navigation.navigate('UrlRepo', {url: url, name: name});
   };
