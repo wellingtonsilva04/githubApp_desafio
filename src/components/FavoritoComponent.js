@@ -7,7 +7,9 @@ export default class FavoritoComponent extends Component {
     const {isOn, onColor, offColor, size, onToggle} = this.props;
     return (
       <View style={styles.container}>
-        <Text>{isOn ? 'Favorito' : 'Favoritar'}</Text>
+        <Text style={styles.textFavorito}>
+          {isOn ? 'Favorito' : 'Favoritar'}
+        </Text>
         <ToggleSwitch
           isOn={isOn}
           onColor={onColor}
@@ -22,5 +24,9 @@ export default class FavoritoComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    flexDirection: 'column-reverse',
+  },
+  textFavorito: {
+    fontSize: 12,
   },
 });
